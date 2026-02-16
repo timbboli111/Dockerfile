@@ -1,21 +1,47 @@
-"inbounds": [
-  {
-    "port": 8080, 
-    "protocol": "vless",
-    "settings": {
-      "clients": [
-        {
-          "id": "6d2f9a1b-e8c4-4b3a-9d72-f5a81c0e92d7",
-          "level": 0
-        }
-      ],
-      "decryption": "none"
+{
+    "log": {
+        "loglevel": "warning"
     },
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-        "path": "/vless-ws"
-      }
-    }
-  }
-]
+    "inbounds": [
+        {
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "6d2f9a1b-e8c4-4b3a-9d72-f5a81c0e92d7",
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "dest": "www.microsoft.com:443",
+                    "xver": 0,
+                    "serverNames": [
+                        "www.microsoft.com",
+                        "graph.microsoft.com"
+                    ],
+                    "privateKey": "uGv_L_n-L9UuXzS_Z-uE_r-B_zS-N_u_z_U_e_C_E_A0",
+                    "shortIds": [
+                        "6f2c7d8a1b2c3d4e"
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "blocked"
+        }
+    ]
+}
